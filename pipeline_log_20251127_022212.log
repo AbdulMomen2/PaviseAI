@@ -1,0 +1,268 @@
+2025-11-27 02:22:12,413 | INFO | 🚀 Device Configured: cpu
+2025-11-27 02:22:13,684 | INFO | Registering at the factory, space: dummy distance type: INT
+2025-11-27 02:22:13,685 | INFO | Registering at the factory, space: dummy distance type: FLOAT
+2025-11-27 02:22:13,686 | INFO | Registering at the factory, space: bit_hamming distance type: INT
+2025-11-27 02:22:13,686 | INFO | Registering at the factory, space: bit_jaccard distance type: FLOAT
+2025-11-27 02:22:13,686 | INFO | Registering at the factory, space: leven distance type: INT
+2025-11-27 02:22:13,686 | INFO | Registering at the factory, space: normleven distance type: FLOAT
+2025-11-27 02:22:13,687 | INFO | Registering at the factory, space: kldivfast distance type: FLOAT
+2025-11-27 02:22:13,687 | INFO | Registering at the factory, space: kldivfastrq distance type: FLOAT
+2025-11-27 02:22:13,687 | INFO | Registering at the factory, space: kldivgenfast distance type: FLOAT
+2025-11-27 02:22:13,687 | INFO | Registering at the factory, space: kldivgenslow distance type: FLOAT
+2025-11-27 02:22:13,687 | INFO | Registering at the factory, space: kldivgenfastrq distance type: FLOAT
+2025-11-27 02:22:13,687 | INFO | Registering at the factory, space: itakurasaitofast distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: jsdivslow distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: jsdivfast distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: jsdivfastapprox distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: jsmetrslow distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: jsmetrfast distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: jsmetrfastapprox distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: word_embed distance type: FLOAT
+2025-11-27 02:22:13,688 | INFO | Registering at the factory, space: lp distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: linf distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: l1 distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: l2 distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: cosinesimil distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: angulardist distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: negdotprod distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: lp_sparse distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: linf_sparse distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: l1_sparse distance type: FLOAT
+2025-11-27 02:22:13,689 | INFO | Registering at the factory, space: l2_sparse distance type: FLOAT
+2025-11-27 02:22:13,690 | INFO | Registering at the factory, space: cosinesimil_sparse distance type: FLOAT
+2025-11-27 02:22:13,690 | INFO | Registering at the factory, space: angulardist_sparse distance type: FLOAT
+2025-11-27 02:22:13,690 | INFO | Registering at the factory, space: negdotprod_sparse distance type: FLOAT
+2025-11-27 02:22:13,690 | INFO | Registering at the factory, space: cosinesimil_sparse_fast distance type: FLOAT
+2025-11-27 02:22:13,690 | INFO | Registering at the factory, space: cosinesimil_sparse_bin_fast distance type: FLOAT
+2025-11-27 02:22:13,690 | INFO | Registering at the factory, space: angulardist_sparse_fast distance type: FLOAT
+2025-11-27 02:22:13,691 | INFO | Registering at the factory, space: negdotprod_sparse_fast distance type: FLOAT
+2025-11-27 02:22:13,691 | INFO | Registering at the factory, space: negdotprod_sparse_bin_fast distance type: FLOAT
+2025-11-27 02:22:13,691 | INFO | Registering at the factory, space: querynorm_negdotprod_sparse_fast distance type: FLOAT
+2025-11-27 02:22:13,691 | INFO | Registering at the factory, space: jaccard_sparse distance type: FLOAT
+2025-11-27 02:22:13,692 | INFO | Registering at the factory, space: abdiv_slow distance type: FLOAT
+2025-11-27 02:22:13,693 | INFO | Registering at the factory, space: abdiv_fast distance type: FLOAT
+2025-11-27 02:22:13,693 | INFO | Registering at the factory, space: renyidiv_slow distance type: FLOAT
+2025-11-27 02:22:13,693 | INFO | Registering at the factory, space: renyidiv_fast distance type: FLOAT
+2025-11-27 02:22:13,693 | INFO | Registering at the factory, space: l2sqr_sift distance type: INT
+2025-11-27 02:22:13,694 | INFO | Registering at the factory, space: sparse_dense_fusion distance type: FLOAT
+2025-11-27 02:22:13,694 | INFO | Registering at the factory, method: dummy distance type: FLOAT
+2025-11-27 02:22:13,694 | INFO | Registering at the factory, method: dummy distance type: INT
+2025-11-27 02:22:13,694 | INFO | Registering at the factory, method: pivot_neighb_invindx distance type: FLOAT
+2025-11-27 02:22:13,694 | INFO | Registering at the factory, method: pivot_neighb_invindx distance type: INT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: napp distance type: FLOAT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: napp distance type: INT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: brute_force distance type: FLOAT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: brute_force distance type: INT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: seq_search distance type: FLOAT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: seq_search distance type: INT
+2025-11-27 02:22:13,695 | INFO | Registering at the factory, method: sw-graph distance type: FLOAT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: sw-graph distance type: INT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: small_world_rand distance type: FLOAT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: small_world_rand distance type: INT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: hnsw distance type: FLOAT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: hnsw distance type: INT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: vptree distance type: INT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: vptree distance type: FLOAT
+2025-11-27 02:22:13,696 | INFO | Registering at the factory, method: simple_invindx distance type: FLOAT
+2025-11-27 02:22:21,085 | INFO | Loading faiss with AVX512 support.
+2025-11-27 02:22:21,086 | INFO | Could not load library with AVX512 support due to:
+ModuleNotFoundError("No module named 'faiss.swigfaiss_avx512'")
+2025-11-27 02:22:21,086 | INFO | Loading faiss with AVX2 support.
+2025-11-27 02:22:21,162 | INFO | Successfully loaded faiss with AVX2 support.
+2025-11-27 02:22:36,900 | INFO | 🚀 Pipeline Started
+2025-11-27 02:22:36,905 | INFO | 🔧 Initializing ALL Connected Components...
+2025-11-27 02:23:03,842 | INFO | Loading index from C:\Users\DELL\.scispacy\datasets\7bad4a37e60db48ee4b5b03dfaa61b195af5b4c69a6850fa5b466103229c263d.4952ca58f4ed53ad673bb387c8f203d92f422dbcc8cfb673ffed9720e7c0af68.nmslib_index.bin
+2025-11-27 02:23:03,848 | INFO | Loading regular index.
+2025-11-27 02:23:10,549 | INFO | Finished loading index
+2025-11-27 02:23:10,552 | INFO | Set HNSW query-time parameters:
+2025-11-27 02:23:10,553 | INFO | ef(Search)         =20
+2025-11-27 02:23:10,554 | INFO | algoType           =2
+2025-11-27 02:23:10,556 | INFO | Set HNSW query-time parameters:
+2025-11-27 02:23:10,557 | INFO | ef(Search)         =200
+2025-11-27 02:23:10,557 | INFO | algoType           =2
+2025-11-27 02:23:28,732 | INFO | 📝 Clinical Normalizer Initialized ✅
+2025-11-27 02:23:28,733 | INFO | 🔄 Connecting to Neo4j...
+2025-11-27 02:23:29,724 | INFO | ✅ Neo4j connected successfully! (db=neo4j) result=1
+2025-11-27 02:23:29,724 | INFO | 🗄️  Neo4j Handler Connected ✅
+2025-11-27 02:23:32,825 | INFO | 🛡️  Prompt Injection Detector Active ✅
+2025-11-27 02:23:32,838 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:23:32,840 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:23:36,747 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:23:36,748 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:23:41,808 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:23:41,812 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:23:46,178 | INFO | 🧠 MedGNN Connected: Corpus 100, KG 1 ✅
+2025-11-27 02:23:46,183 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:23:46,183 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:23:50,748 | INFO | Using default tokenizer.
+2025-11-27 02:23:50,750 | INFO | 💬 Transformer QA Stage Connected: 1 Steps ✅
+2025-11-27 02:23:50,759 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:23:50,759 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:23:54,979 | INFO | Using default tokenizer.
+2025-11-27 02:23:55,140 | INFO | 📊 Evaluation Layer Connected: BLEU 0.068, Coherence 0.000 ✅
+2025-11-27 02:23:56,041 | INFO | error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+2025-11-27 02:23:56,043 | INFO | 🔄 Reflection Chain Connected: Loops 1, Hallucination 0.00 ✅
+2025-11-27 02:23:56,361 | INFO | error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+2025-11-27 02:23:56,362 | INFO | 🔒 Guardrails Connected: Input Safe False ✅
+2025-11-27 02:23:56,363 | INFO | ✅ ALL Components Fully Connected & Verified!
+2025-11-27 02:23:56,364 | INFO | 🌐 Running Federated Learning Simulation...
+2025-11-27 02:23:56,364 | WARNING | DEPRECATED FEATURE: flwr.simulation.start_simulation() is deprecated.
+	Instead, use the `flwr run` CLI command to start a local simulation in your Flower app, as shown for example below:
+
+		$ flwr new  # Create a new Flower app from a template
+
+		$ flwr run  # Run the Flower app in Simulation Mode
+
+	Using `start_simulation()` is deprecated.
+
+            This is a deprecated feature. It will be removed
+            entirely in future versions of Flower.
+        
+2025-11-27 02:23:56,371 | INFO | Starting Flower simulation, config: num_rounds=3, no round_timeout
+2025-11-27 02:24:06,577 | INFO | Flower VCE: Ray initialized with resources: {'CPU': 8.0, 'object_store_memory': 369110630.0, 'node:127.0.0.1': 1.0, 'node:__internal_head__': 1.0, 'memory': 738221262.0}
+2025-11-27 02:24:06,579 | INFO | Optimize your simulation with Flower VCE: https://flower.ai/docs/framework/how-to-run-simulations.html
+2025-11-27 02:24:06,579 | INFO | Flower VCE: Resources for each Virtual Client: {'num_cpus': 1, 'num_gpus': 0}
+2025-11-27 02:24:06,632 | INFO | Flower VCE: Creating VirtualClientEngineActorPool with 8 actors
+2025-11-27 02:24:06,634 | INFO | [INIT]
+2025-11-27 02:24:06,635 | INFO | Requesting initial parameters from one random client
+2025-11-27 02:24:27,831 | INFO | Received initial parameters from one random client
+2025-11-27 02:24:27,832 | INFO | Starting evaluation of initial global parameters
+2025-11-27 02:24:27,832 | INFO | Evaluation returned no results (`None`)
+2025-11-27 02:24:27,832 | INFO | 
+2025-11-27 02:24:27,833 | INFO | [ROUND 1]
+2025-11-27 02:24:27,837 | INFO | configure_fit: strategy sampled 3 clients (out of 3)
+2025-11-27 02:24:39,396 | INFO | aggregate_fit: received 3 results and 0 failures
+2025-11-27 02:24:39,413 | WARNING | No fit_metrics_aggregation_fn provided
+2025-11-27 02:24:39,413 | INFO | configure_evaluate: strategy sampled 3 clients (out of 3)
+2025-11-27 02:24:39,446 | INFO | aggregate_evaluate: received 3 results and 0 failures
+2025-11-27 02:24:39,446 | INFO | 
+2025-11-27 02:24:39,448 | INFO | [ROUND 2]
+2025-11-27 02:24:39,449 | INFO | configure_fit: strategy sampled 3 clients (out of 3)
+2025-11-27 02:24:39,488 | INFO | aggregate_fit: received 3 results and 0 failures
+2025-11-27 02:24:39,490 | INFO | configure_evaluate: strategy sampled 3 clients (out of 3)
+2025-11-27 02:24:39,515 | INFO | aggregate_evaluate: received 3 results and 0 failures
+2025-11-27 02:24:39,518 | INFO | 
+2025-11-27 02:24:39,518 | INFO | [ROUND 3]
+2025-11-27 02:24:39,518 | INFO | configure_fit: strategy sampled 3 clients (out of 3)
+2025-11-27 02:24:39,561 | INFO | aggregate_fit: received 3 results and 0 failures
+2025-11-27 02:24:39,563 | INFO | configure_evaluate: strategy sampled 3 clients (out of 3)
+2025-11-27 02:24:39,591 | INFO | aggregate_evaluate: received 3 results and 0 failures
+2025-11-27 02:24:39,592 | INFO | 
+2025-11-27 02:24:39,592 | INFO | [SUMMARY]
+2025-11-27 02:24:39,592 | INFO | Run finished 3 round(s) in 11.76s
+2025-11-27 02:24:39,593 | INFO | 	History (loss, distributed):
+2025-11-27 02:24:39,595 | INFO | 		round 1: 0.1962970841837966
+2025-11-27 02:24:39,595 | INFO | 		round 2: 0.13277452968453107
+2025-11-27 02:24:39,596 | INFO | 		round 3: 0.08362392298877239
+2025-11-27 02:24:39,596 | INFO | 
+2025-11-27 02:24:39,838 | INFO | ✅ Federated Global Model Loaded!
+2025-11-27 02:24:39,839 | INFO | ================================================================================
+2025-11-27 02:24:39,839 | INFO | 🧪 TESTING STEP 1: CLINICAL NORMALIZATION
+2025-11-27 02:24:39,839 | INFO | ================================================================================
+2025-11-27 02:24:39,840 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Test Query 1: Patient with type 2 diabetes mellitus and hypertension
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:41,392 | INFO | 📝 Normalized Query: patient with type 2 diabetes mellitus and hypertension
+2025-11-27 02:24:41,393 | INFO | 🔍 Found 3 medical entities
+2025-11-27 02:24:41,393 | INFO |   - patient (ENTITY) | CUI: C0030705
+2025-11-27 02:24:41,393 | INFO |   - type 2 diabetes mellitus (ENTITY) | CUI: C0011860
+2025-11-27 02:24:41,393 | INFO |   - hypertension (ENTITY) | CUI: C0020538
+2025-11-27 02:24:41,394 | INFO | 📊 Summary: {'total_entities': 3, 'entity_types': {'ENTITY': 3}, 'semantic_categories': {'T101': 1, 'T047': 2}, 'has_disease': True, 'has_symptom': False, 'has_drug': False, 'has_procedure': False}
+2025-11-27 02:24:41,394 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Test Query 2: What are the side effects of metformin?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:43,058 | INFO | 📝 Normalized Query: what are the side effects of metformin?
+2025-11-27 02:24:43,058 | INFO | 🔍 Found 2 medical entities
+2025-11-27 02:24:43,059 | INFO |   - side effects (ENTITY) | CUI: C0001688
+2025-11-27 02:24:43,059 | INFO |   - metformin (ENTITY) | CUI: C0025598
+2025-11-27 02:24:43,059 | INFO | 📊 Summary: {'total_entities': 2, 'entity_types': {'ENTITY': 2}, 'semantic_categories': {'T169': 1, 'T109': 1, 'T121': 1}, 'has_disease': False, 'has_symptom': False, 'has_drug': True, 'has_procedure': False}
+2025-11-27 02:24:43,059 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Test Query 3: Symptoms of acute myocardial infarction
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:43,289 | INFO | 📝 Normalized Query: symptoms of acute myocardial infarction
+2025-11-27 02:24:43,290 | INFO | 🔍 Found 2 medical entities
+2025-11-27 02:24:43,290 | INFO |   - symptoms (ENTITY) | CUI: C0683368
+2025-11-27 02:24:43,290 | INFO |   - acute myocardial infarction (ENTITY) | CUI: C0027051
+2025-11-27 02:24:43,291 | INFO | 📊 Summary: {'total_entities': 2, 'entity_types': {'ENTITY': 2}, 'semantic_categories': {'T169': 1, 'T047': 1}, 'has_disease': True, 'has_symptom': False, 'has_drug': False, 'has_procedure': False}
+2025-11-27 02:24:43,291 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Test Query 4: Treatment options for rheumatoid arthritis
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:43,739 | INFO | 📝 Normalized Query: treatment options for rheumatoid arthritis
+2025-11-27 02:24:43,739 | INFO | 🔍 Found 2 medical entities
+2025-11-27 02:24:43,739 | INFO |   - treatment options (ENTITY) | CUI: C0039798
+2025-11-27 02:24:43,740 | INFO |   - rheumatoid arthritis (ENTITY) | CUI: C0003873
+2025-11-27 02:24:43,740 | INFO | 📊 Summary: {'total_entities': 2, 'entity_types': {'ENTITY': 2}, 'semantic_categories': {'T169': 1, 'T047': 1}, 'has_disease': True, 'has_symptom': False, 'has_drug': False, 'has_procedure': False}
+2025-11-27 02:24:43,740 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Test Query 5: Patient presents with fever, cough, and SOB
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:44,207 | INFO | 📝 Normalized Query: patient presents with fever, cough, and sob
+2025-11-27 02:24:44,207 | INFO | 🔍 Found 4 medical entities
+2025-11-27 02:24:44,208 | INFO |   - patient (ENTITY) | CUI: C0030705
+2025-11-27 02:24:44,208 | INFO |   - fever (ENTITY) | CUI: C0015967
+2025-11-27 02:24:44,208 | INFO |   - cough (ENTITY) | CUI: C0010200
+2025-11-27 02:24:44,208 | INFO |   - sob (ENTITY) | CUI: None
+2025-11-27 02:24:44,208 | INFO | 📊 Summary: {'total_entities': 4, 'entity_types': {'ENTITY': 4}, 'semantic_categories': {'T101': 1, 'T184': 2}, 'has_disease': False, 'has_symptom': True, 'has_drug': False, 'has_procedure': False}
+2025-11-27 02:24:44,208 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Test Query 6: Is there a connection between COVID-19 and cardiac complications?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:44,348 | INFO | 📝 Normalized Query: is there a connection between covid-19 and cardiac complications?
+2025-11-27 02:24:44,349 | INFO | 🔍 Found 3 medical entities
+2025-11-27 02:24:44,349 | INFO |   - connection (ENTITY) | CUI: C0056248
+2025-11-27 02:24:44,349 | INFO |   - covid-19 (ENTITY) | CUI: C5203670
+2025-11-27 02:24:44,350 | INFO |   - cardiac complications (ENTITY) | CUI: C1171258
+2025-11-27 02:24:44,350 | INFO | 📊 Summary: {'total_entities': 3, 'entity_types': {'ENTITY': 3}, 'semantic_categories': {'T116': 1, 'T126': 1, 'T047': 1, 'T169': 1}, 'has_disease': True, 'has_symptom': False, 'has_drug': False, 'has_procedure': False}
+2025-11-27 02:24:44,350 | INFO | 
+🧪 TESTING STEP 2: PROMPT INJECTION DETECTION
+
+2025-11-27 02:24:44,351 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Query: What are the symptoms of type 2 diabetes?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:45,176 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Query: How does metformin work for diabetes management?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:45,278 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Query: What are the treatment options for hypertension?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:45,362 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Query: Can you explain the side effects of statins?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:45,504 | INFO | 
+────────────────────────────────────────────────────────────────────────────────
+Query: What is the recommended dosage for aspirin in heart disease?
+────────────────────────────────────────────────────────────────────────────────
+2025-11-27 02:24:45,608 | INFO | 
+🧪 TESTING EVALUATION, REFLECTION, GUARDRAILS
+
+2025-11-27 02:24:46,271 | INFO | BLEU: 0.040, Coherence: 0.692
+2025-11-27 02:24:46,624 | INFO | error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+2025-11-27 02:24:46,647 | INFO | Reflection Loops: 1, Hallucination: 0.00
+2025-11-27 02:24:46,973 | INFO | error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+2025-11-27 02:24:48,454 | INFO | error_code=insufficient_quota error_message='You exceeded your current quota, please check your plan and billing details. For more information on this error, read the docs: https://platform.openai.com/docs/guides/error-codes/api-errors.' error_param=None error_type=insufficient_quota message='OpenAI API error received' stream_error=False
+2025-11-27 02:24:48,457 | INFO | Guardrails Input Safe: False, Unsafe Input: False
+2025-11-27 02:24:48,458 | INFO | 
+🔗 FULL INTEGRATED PIPELINE TEST
+
+2025-11-27 02:24:48,460 | INFO | 🟢 Safe Test Query: What are the symptoms of diabetes?
+2025-11-27 02:24:49,556 | INFO | Received notification from DBMS server: <GqlStatusObject gql_status='03N90', status_description="info: cartesian product. The disconnected pattern '(q:Query {id: $query_id}), (e:Entity {cui: $cui})' builds a cartesian product. A cartesian product may produce a large amount of data and slow down query processing.", position=<SummaryInputPosition line=2, column=21, offset=21>, raw_classification='PERFORMANCE', classification=<NotificationClassification.PERFORMANCE: 'PERFORMANCE'>, raw_severity='INFORMATION', severity=<NotificationSeverity.INFORMATION: 'INFORMATION'>, diagnostic_record={'_classification': 'PERFORMANCE', '_severity': 'INFORMATION', '_position': {'offset': 21, 'line': 2, 'column': 21}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: '\n                    MATCH (q:Query {id: $query_id}), (e:Entity {cui: $cui})\n                    MERGE (q)-[r:CONTAINS]->(e)\n                    SET r.confidence = coalesce(r.confidence, 0.0) + $conf,\n                        r.updated = datetime()\n                    '
+2025-11-27 02:24:50,109 | INFO | Received notification from DBMS server: <GqlStatusObject gql_status='03N90', status_description="info: cartesian product. The disconnected pattern '(q:Query {id: $query_id}), (e:Entity {cui: $cui})' builds a cartesian product. A cartesian product may produce a large amount of data and slow down query processing.", position=<SummaryInputPosition line=2, column=21, offset=21>, raw_classification='PERFORMANCE', classification=<NotificationClassification.PERFORMANCE: 'PERFORMANCE'>, raw_severity='INFORMATION', severity=<NotificationSeverity.INFORMATION: 'INFORMATION'>, diagnostic_record={'_classification': 'PERFORMANCE', '_severity': 'INFORMATION', '_position': {'offset': 21, 'line': 2, 'column': 21}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: '\n                    MATCH (q:Query {id: $query_id}), (e:Entity {cui: $cui})\n                    MERGE (q)-[r:CONTAINS]->(e)\n                    SET r.confidence = coalesce(r.confidence, 0.0) + $conf,\n                        r.updated = datetime()\n                    '
+2025-11-27 02:24:50,203 | INFO | Received notification from DBMS server: <GqlStatusObject gql_status='03N90', status_description="info: cartesian product. The disconnected pattern '(a:Entity {cui: $cui1}), (b:Entity {cui: $cui2})' builds a cartesian product. A cartesian product may produce a large amount of data and slow down query processing.", position=<SummaryInputPosition line=2, column=25, offset=25>, raw_classification='PERFORMANCE', classification=<NotificationClassification.PERFORMANCE: 'PERFORMANCE'>, raw_severity='INFORMATION', severity=<NotificationSeverity.INFORMATION: 'INFORMATION'>, diagnostic_record={'_classification': 'PERFORMANCE', '_severity': 'INFORMATION', '_position': {'offset': 25, 'line': 2, 'column': 25}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: '\n                        MATCH (a:Entity {cui: $cui1}), (b:Entity {cui: $cui2})\n                        MERGE (a)-[r:CO_OCCURS_IN]->(b)\n                        SET r.confidence = coalesce(r.confidence, 0.0) + $conf,\n                            r.updated = datetime()\n                        '
+2025-11-27 02:24:50,312 | INFO | Received notification from DBMS server: <GqlStatusObject gql_status='03N90', status_description="info: cartesian product. The disconnected pattern '(a:Entity {cui: $cui1}), (b:Entity {cui: $cui2})' builds a cartesian product. A cartesian product may produce a large amount of data and slow down query processing.", position=<SummaryInputPosition line=2, column=25, offset=25>, raw_classification='PERFORMANCE', classification=<NotificationClassification.PERFORMANCE: 'PERFORMANCE'>, raw_severity='INFORMATION', severity=<NotificationSeverity.INFORMATION: 'INFORMATION'>, diagnostic_record={'_classification': 'PERFORMANCE', '_severity': 'INFORMATION', '_position': {'offset': 25, 'line': 2, 'column': 25}, 'OPERATION': '', 'OPERATION_CODE': '0', 'CURRENT_SCHEMA': '/'}> for query: '\n                        MATCH (a:Entity {cui: $cui1}), (b:Entity {cui: $cui2})\n                        MERGE (b)-[r2:CO_OCCURS_IN]->(a)\n                        SET r2.confidence = coalesce(r2.confidence, 0.0) + $conf,\n                            r2.updated = datetime()\n                        '
+2025-11-27 02:24:50,398 | INFO | 💾 Stored query 'What are the symptoms of diabetes?' with 2 entities to Neo4j
+2025-11-27 02:24:50,712 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:24:50,713 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:24:55,705 | INFO | Use pytorch device_name: cpu
+2025-11-27 02:24:55,706 | INFO | Load pretrained SentenceTransformer: sentence-transformers/all-MiniLM-L6-v2
+2025-11-27 02:24:58,351 | ERROR | 💥 Error: The paging file is too small for this operation to complete. (os error 1455)
+2025-11-27 02:24:58,352 | INFO | 🧹 Cleaning Up...
+2025-11-27 02:24:58,358 | INFO | Closed Neo4j driver.
+2025-11-27 02:24:58,359 | INFO | ✅ Cleanup Complete
