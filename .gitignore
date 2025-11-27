@@ -1,0 +1,21 @@
+# Python venv
+medibot/
+venv/
+env/
+.venv/
+
+# Site packages
+Lib/
+Include/
+Scripts/
+bin/
+share/
+
+# PyTorch / large libs
+*.dll
+*.lib
+*.so
+
+# Cache
+__pycache__/
+*.pyc
