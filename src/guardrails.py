@@ -12,6 +12,7 @@ class Guardrails:
     Guardrails Module: Input/Output Checks for Safety (Harmful, Abusive, Explicit Content).
     Uses LLM-based self-check prompts (NeMo Guardrails style).
     """
+
     def __init__(self):
         print("✅ Guardrails initialized (Input/Output Rails)")
 
@@ -25,20 +26,23 @@ class Guardrails:
                 max_tokens=50,
                 temperature=0.1
             )
-            # Get content safely
+
             choice = response.choices[0]
             content = getattr(choice.message, "content", None) if hasattr(choice, "message") else choice.get("text", "")
             check_result = content.strip() if content else ""
-            
-            blocked = "Yes" in check_result
-            # Reason extraction
+
+            # Block detection
+            blocked = "Yes" in check_result or "Blocked" in check_result
+
+            # Extract reason
             if "Reason:" in check_result:
                 reason = check_result.split("Reason:")[-1].strip()
             else:
                 reason = "Input violates policy." if blocked else "Passed guardrail check."
-            
+
             print(f"🔒 Input Guardrail: {'Blocked' if blocked else 'Passed'} - {reason[:50]}...")
             return {"blocked": blocked, "reason": reason, "safe": not blocked}
+
         except Exception as e:
             print(f"⚠️ Input Check Error: {e}")
             return {"blocked": True, "reason": f"Check failed due to error: {e}", "safe": False}
@@ -53,18 +57,21 @@ class Guardrails:
                 max_tokens=50,
                 temperature=0.1
             )
+
             choice = response.choices[0]
             content = getattr(choice.message, "content", None) if hasattr(choice, "message") else choice.get("text", "")
             check_result = content.strip() if content else ""
-            
-            blocked = "Yes" in check_result
+
+            blocked = "Yes" in check_result or "Blocked" in check_result
+
             if "Reason:" in check_result:
                 reason = check_result.split("Reason:")[-1].strip()
             else:
                 reason = "Output violates policy." if blocked else "Passed guardrail check."
-            
+
             print(f"🔒 Output Guardrail: {'Blocked' if blocked else 'Passed'} - {reason[:50]}...")
             return {"blocked": blocked, "reason": reason, "safe": not blocked}
+
         except Exception as e:
             print(f"⚠️ Output Check Error: {e}")
             return {"blocked": True, "reason": f"Check failed due to error: {e}", "safe": False}

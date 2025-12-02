@@ -1,37 +1,40 @@
-# Data Store: Neo4j Handler (UMLS Graph + Real PubMed + PDF/URL Integration)
 # =====================================================
-from neo4j import GraphDatabase, Session
+# Neo4j Handler: UMLS Graph + Real PubMed + PDF/URL Integration
+# =====================================================
+from neo4j import GraphDatabase
 from Bio import Entrez
-from typing import List, Dict, Optional, Any
+from typing import List, Dict, Any
 import time
 import logging
 import pdfplumber
 import requests
 from bs4 import BeautifulSoup
 from src.config import NEO4J_URI, NEO4J_USER, NEO4J_PASSWORD, NCBI_EMAIL, NEO4J_DATABASE
+from src.pdf_handler import PDFHandler  # Custom PDF chunk extraction
 
-# configure simple logging
+# -------------------------
+# Logging
+# -------------------------
 logging.basicConfig(level=logging.INFO)
 logger = logging.getLogger(__name__)
 
 Entrez.email = NCBI_EMAIL
 
+
 class Neo4jHandler:
-    def __init__(
-        self,
-        uri: str = NEO4J_URI,
-        user: str = NEO4J_USER,
-        password: str = NEO4J_PASSWORD,
-        database: str = None,
-    ):
-        self.database = database or (NEO4J_DATABASE if "NEO4J_DATABASE" in globals() else "neo4j")
-        logger.info("🔄 Connecting to Neo4j...")
+    def __init__(self,
+                 uri: str = NEO4J_URI,
+                 user: str = NEO4J_USER,
+                 password: str = NEO4J_PASSWORD,
+                 database: str = None):
+        self.database = database or NEO4J_DATABASE
         self.driver = GraphDatabase.driver(uri, auth=(user, password))
+        self.pdf_handler = PDFHandler()
+        logger.info("🔄 Connecting to Neo4j...")
         try:
-            def _test(tx):
-                return tx.run("RETURN 1 AS ok").single().get("ok")
-            val = self.driver.session(database=self.database).execute_read(_test)
-            logger.info("✅ Neo4j connected successfully! (db=%s) result=%s", self.database, val)
+            with self.driver.session(database=self.database) as session:
+                result = session.execute_read(lambda tx: tx.run("RETURN 1 AS ok").single().get("ok"))
+            logger.info("✅ Neo4j connected successfully! (db=%s, result=%s)", self.database, result)
         except Exception as e:
             logger.exception("❌ Failed to connect to Neo4j: %s", e)
             raise
@@ -44,14 +47,13 @@ class Neo4jHandler:
             pass
 
     # -------------------------
-    # Utility helpers
+    # Utilities
     # -------------------------
     @staticmethod
     def _safe_query_id(text: str, max_len: int = 50) -> str:
         if not text:
             return "empty_query"
-        q = text.strip().replace("\n", " ")
-        return q[:max_len]
+        return text.strip().replace("\n", " ")[:max_len]
 
     @staticmethod
     def _extract_text_from_pdf(pdf_path: str) -> str:
@@ -59,7 +61,9 @@ class Neo4jHandler:
         try:
             with pdfplumber.open(pdf_path) as pdf:
                 for page in pdf.pages:
-                    text += page.extract_text() + "\n"
+                    t = page.extract_text()
+                    if t:
+                        text += t + "\n"
         except Exception as e:
             logger.warning("Failed to extract text from PDF %s: %s", pdf_path, e)
         return text.strip()
@@ -98,34 +102,36 @@ class Neo4jHandler:
                 content=content
             )
 
+        # Store PDFs
         for pdf_path in pdf_paths:
             doc_id = self._safe_query_id(pdf_path)
             content = self._extract_text_from_pdf(pdf_path)
-            if not content:
+            if content:
+                try:
+                    with self.driver.session(database=self.database) as session:
+                        session.execute_write(_tx, doc_id, f"PDF:{pdf_path}", content)
+                    logger.info("💾 Stored PDF '%s' as Document node", pdf_path)
+                except Exception as e:
+                    logger.exception("❌ Failed to store PDF %s: %s", pdf_path, e)
+            else:
                 logger.warning("PDF %s has no extractable text, skipping.", pdf_path)
-                continue
-            try:
-                with self.driver.session(database=self.database) as session:
-                    session.execute_write(_tx, doc_id, f"PDF:{pdf_path}", content)
-                logger.info("💾 Stored PDF '%s' as Document node", pdf_path)
-            except Exception as e:
-                logger.exception("❌ Failed to store PDF %s: %s", pdf_path, e)
 
+        # Store URLs
         for url in urls:
             doc_id = self._safe_query_id(url)
             content = self._extract_text_from_url(url)
-            if not content:
+            if content:
+                try:
+                    with self.driver.session(database=self.database) as session:
+                        session.execute_write(_tx, doc_id, f"URL:{url}", content)
+                    logger.info("💾 Stored URL '%s' as Document node", url)
+                except Exception as e:
+                    logger.exception("❌ Failed to store URL %s: %s", url, e)
+            else:
                 logger.warning("URL %s has no extractable text, skipping.", url)
-                continue
-            try:
-                with self.driver.session(database=self.database) as session:
-                    session.execute_write(_tx, doc_id, f"URL:{url}", content)
-                logger.info("💾 Stored URL '%s' as Document node", url)
-            except Exception as e:
-                logger.exception("❌ Failed to store URL %s: %s", url, e)
 
     # -------------------------
-    # Core storage method
+    # Core query storage
     # -------------------------
     def store_normalized_query(self, normalized_result: Dict[str, Any]) -> None:
         query_text = normalized_result.get("original_query", "")
@@ -133,6 +139,7 @@ class Neo4jHandler:
         entities = normalized_result.get("entities", [])
 
         def _tx(tx):
+            # Store Query
             tx.run(
                 """
                 MERGE (q:Query {id: $query_id})
@@ -143,15 +150,11 @@ class Neo4jHandler:
                 is_medical=bool(normalized_result.get("is_medical_query", False)),
             )
 
+            # Store Entities
             for ent in entities:
                 cui = ent.get("cui")
-                text = ent.get("text")
-                label = ent.get("label")
-                sem_types = ent.get("semantic_types") or []
-                conf = float(ent.get("confidence", 1.0))
                 if not cui:
                     continue
-
                 tx.run(
                     """
                     MERGE (e:Entity {cui: $cui})
@@ -160,7 +163,10 @@ class Neo4jHandler:
                         e.semantic_types = $sem_types,
                         e.last_seen = datetime()
                     """,
-                    cui=cui, text=text, label=label, sem_types=sem_types
+                    cui=cui,
+                    text=ent.get("text"),
+                    label=ent.get("label"),
+                    sem_types=ent.get("semantic_types") or []
                 )
 
                 tx.run(
@@ -170,10 +176,10 @@ class Neo4jHandler:
                     SET r.confidence = coalesce(r.confidence, 0.0) + $conf,
                         r.updated = datetime()
                     """,
-                    query_id=query_id, cui=cui, conf=conf
+                    query_id=query_id, cui=cui, conf=float(ent.get("confidence", 1.0))
                 )
 
-            # co-occurrence
+            # Co-occurrence relationships
             n = len(entities)
             for i in range(n):
                 ent1 = entities[i]
@@ -181,7 +187,7 @@ class Neo4jHandler:
                 conf1 = float(ent1.get("confidence", 1.0))
                 if not cui1:
                     continue
-                for j in range(i+1, n):
+                for j in range(i + 1, n):
                     ent2 = entities[j]
                     cui2 = ent2.get("cui")
                     conf2 = float(ent2.get("confidence", 1.0))
@@ -216,7 +222,7 @@ class Neo4jHandler:
             raise
 
     # -------------------------
-    # Subgraph query (fixed for Neo4j)
+    # Subgraph query
     # -------------------------
     def query_personalized_subgraph(self, cuis: List[str], max_depth: int = 2, limit: int = 50) -> List[Dict]:
         if not cuis:
@@ -234,14 +240,13 @@ class Neo4jHandler:
                 """
                 res = tx.run(query)
                 for r in res:
-                    rels = r["rels"] or []
-                    rel_types = []
-                    for rel in rels:
+                    rels = []
+                    for rel in r["rels"] or []:
                         try:
-                            rel_types.append(rel.type)
+                            rels.append(rel.type)
                         except Exception:
-                            rel_types.append(str(rel))
-                    records.append({"source": start_cui, "target": r["target"], "relationships": rel_types})
+                            rels.append(str(rel))
+                    records.append({"source": start_cui, "target": r["target"], "relationships": rels})
             return records
 
         try:
@@ -254,7 +259,7 @@ class Neo4jHandler:
             return []
 
     # -------------------------
-    # PubMed integration (unchanged)
+    # PubMed evidence
     # -------------------------
     def integrate_pubmed_evidence(self, query_text: str, cuis: List[str], normalized_result: Dict, max_per_cui: int = 3, pause_sec: float = 0.34) -> None:
         if not cuis:
@@ -330,29 +335,32 @@ class Neo4jHandler:
 
         logger.info("✅ Integrated real PubMed evidence for %d CUIs", len(cuis))
 
-
-if __name__ == "__main__":
-    handler = Neo4jHandler()
-
     # -------------------------
-    # Add your PDF file paths here
+    # PDF book evidence
     # -------------------------
-    pdf_files = [
-        r"C:\Users\DELL\Downloads\Harrisons-Neurology-in-Clinical-Medicine-2nd-Ed.pdf",
-        r"C:\Users\DELL\Downloads\textbook-of-head-and-neck-anatomy.pdf"
-    ]
-
-    # -------------------------
-    # Add your URLs here
-    # -------------------------
-    urls = [
-        "https://seti.net/Neuron%20Lab/NeuronReferences/Neuroscience%20-%20Bear.pdf",
-        "https://dn720006.ca.archive.org/0/items/betty-friedan-la-mistica-de-la-feminidad/The-Neuroscience-of-Intelligence.pdf",
-        "https://www.assembleia.pr.leg.br/storage/pautas_comissoes/2025/02/1743442756_67ead344a9777.pdf"
-    ]
-
-    # Store PDFs and URLs in Neo4j
-    handler.store_documents(pdf_paths=pdf_files, urls=urls)
-
-    # Close connection
-    handler.close()
+    def integrate_pdf_evidence(self, pdf_paths: List[str], query_text: str, cuis: List[str]):
+        logger.info("📖 Integrating PDF book evidence for %d files...", len(pdf_paths))
+        with self.driver.session(database=self.database) as session:
+            for pdf_path in pdf_paths:
+                try:
+                    pdf_chunks = self.pdf_handler.extract_relevant_pages(pdf_path, query_text)
+                    for chunk_id, chunk in enumerate(pdf_chunks[:3]):
+                        session.run(
+                            """
+                            MERGE (ev:Evidence {pdf_chunk_id: $chunk_id})
+                            SET ev.source = $pdf_path,
+                                ev.summary = substring($text, 0, 200),
+                                ev.full_text = $text
+                            WITH ev, $cuis as cuis
+                            UNWIND cuis as cui
+                            MATCH (e:Entity {cui: cui})
+                            MERGE (e) -[:SUPPORTED_BY_PDF]-> (ev)
+                            """,
+                            chunk_id=f"{pdf_path}_{chunk_id}",
+                            pdf_path=pdf_path,
+                            text=chunk,
+                            cuis=cuis
+                        )
+                except Exception as e:
+                    logger.warning("⚠️ PDF integration error for %s: %s", pdf_path, e)
+        logger.info("✅ Integrated PDF book evidence (chunks stored in Neo4j)")

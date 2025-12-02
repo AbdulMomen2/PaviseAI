@@ -10,7 +10,6 @@ import re
 from typing import Dict
 from src.config import DEBERTA_MODEL, DEVICE, PATTERN_THRESHOLD, MODEL_THRESHOLD, COMBINED_THRESHOLD
 
-
 # ------------------ Injection Pattern Class ------------------
 @dataclass
 class InjectionPattern:
@@ -64,14 +63,13 @@ class InjectionPattern:
         r"BEGIN NEW (SESSION|CONVERSATION|INSTRUCTIONS)"
     ]
 
-
 print("✅ Injection patterns defined!")
-
 
 # ------------------ MAIN DETECTOR CLASS ------------------
 class PromptInjectionDetector:
     def __init__(self, model_name: str = "distilbert-base-uncased", use_lora: bool = True, device: str = DEVICE):
         print(f"🔄 Initializing Prompt Injection Detector...")
+        self.device = device
 
         # DistilBERT tokenizer
         self.tokenizer = AutoTokenizer.from_pretrained(model_name)
@@ -100,7 +98,6 @@ class PromptInjectionDetector:
 
     # ------------------ LoRA ------------------
     def _apply_lora(self):
-        # DistilBERT supports attention Q, V layers
         lora_config = LoraConfig(
             task_type=TaskType.SEQ_CLS,
             r=8,
@@ -113,13 +110,6 @@ class PromptInjectionDetector:
         print(f"✅ LoRA applied - Trainable parameters: {self.model.print_trainable_parameters()}")
 
     # ------------------ PATTERN DETECTOR ------------------
-    def detect_injection(self, query: str, normalized_result: Dict = None) -> Dict:
-        pattern_result = self._pattern_based_detection(query)
-        model_result = self._model_based_detection(query)
-        context_result = self._context_aware_detection(query, normalized_result)
-        final_result = self._combine_detections(query, pattern_result, model_result, context_result)
-        return final_result
-
     def _pattern_based_detection(self, query: str) -> Dict:
         query_lower = query.lower()
         flagged_patterns = []
@@ -157,12 +147,16 @@ class PromptInjectionDetector:
 
     # ------------------ MODEL DETECTOR ------------------
     def _model_based_detection(self, query: str) -> Dict:
-        inputs = self.tokenizer(query, return_tensors="pt", truncation=True, max_length=512, padding=True).to(DEVICE)
-        with torch.no_grad():
-            outputs = self.model(**inputs)
-            probabilities = torch.softmax(outputs.logits, dim=-1)
-            safe_prob = probabilities[0][0].item()
-            unsafe_prob = probabilities[0][1].item()
+        try:
+            inputs = self.tokenizer(query, return_tensors="pt", truncation=True, max_length=512, padding=True).to(self.device)
+            with torch.no_grad():
+                outputs = self.model(**inputs)
+                probabilities = torch.softmax(outputs.logits, dim=-1)
+                safe_prob = probabilities[0][0].item()
+                unsafe_prob = probabilities[0][1].item()
+        except Exception:
+            # fallback in case of tokenization/model errors
+            safe_prob, unsafe_prob = 0.5, 0.5
 
         return {
             "method": "model_based",
@@ -205,7 +199,7 @@ class PromptInjectionDetector:
                 risk_signals.append(f"Context switching detected: {pattern}")
                 risk_score += 0.4
 
-        special_char_ratio = sum(1 for c in query if not c.isalnum() and c != ' ') / len(query)
+        special_char_ratio = sum(1 for c in query if not c.isalnum() and c != ' ') / max(len(query), 1)
 
         if special_char_ratio > 0.15:
             risk_signals.append(f"High special character ratio: {special_char_ratio:.2f}")
@@ -258,7 +252,6 @@ class PromptInjectionDetector:
             primary_method = "combined"
             reason = "All checks passed - query appears safe"
 
-        # Final recommendation
         if combined_risk_score >= 0.9:
             recommendation = "BLOCK"
             action = "Reject query immediately - high confidence attack"
@@ -287,3 +280,11 @@ class PromptInjectionDetector:
                 "context_aware": context_result
             }
         }
+
+    # ------------------ PUBLIC METHOD ------------------
+    def detect_injection(self, query: str, normalized_result: Dict = None) -> Dict:
+        pattern_result = self._pattern_based_detection(query)
+        model_result = self._model_based_detection(query)
+        context_result = self._context_aware_detection(query, normalized_result)
+        final_result = self._combine_detections(query, pattern_result, model_result, context_result)
+        return final_result
